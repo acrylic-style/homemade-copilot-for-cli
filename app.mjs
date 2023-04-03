@@ -109,7 +109,7 @@ const ask = async () => {
     body: JSON.stringify({
       model: 'gpt-3.5-turbo',
       max_tokens: 2000,
-      temperature: 1.0,
+      temperature: 0,
       messages: talk,
     }),
   }).then(res => res.json())
