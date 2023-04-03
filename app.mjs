@@ -174,6 +174,7 @@ const ask = async () => {
               choices: [
                 { name: '✨ このコマンドを実行する', value: 'execute' },
                 { name: '📝 入力を追加する', value: 'revise' },
+                { name: '📝 最初からやりなおす', value: 'init' },
                 { name: '❌ キャンセル', value: 'cancel' },
               ],
             },
@@ -188,6 +189,12 @@ const ask = async () => {
               name: 'input',
               message: '入力を追加',
               when: ({ action }) => action === 'revise',
+            },
+            {
+              type: 'input',
+              name: 'initInput',
+              message: '入力',
+              when: ({ action }) => action === 'init',
             },
           ])
           .catch(e => {
@@ -206,6 +213,23 @@ const ask = async () => {
       } else if (action.action === 'revise') {
         talk.push({ role: 'user', content: action.input })
         ask()
+      } else if (action.action === 'init') {
+        if (action.initInput.length === 0) {
+          askAction()
+        } else {
+          talk.length = 0
+          talk.push(
+            {
+              role: 'system',
+              content: systemMessage,
+            },
+            {
+              role: 'user',
+              content: action.initInput,
+            },
+          )
+          ask()
+        }
       } else if (action.action === 'cancel') {
         process.exit(0)
       }
