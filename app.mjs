@@ -71,7 +71,7 @@ const print = (command, description) => {
       ${ANSI.FgWhite}> ${ANSI.FgYellow}${command.replace(/\n/g, '\n      ')}${ANSI.Reset}
 
     ${ANSI.FgWhite}========== ${ANSI.BgBlue}${ANSI.Bright} 説明 ${ANSI.Reset}${ANSI.FgWhite} ==========${ANSI.Reset}
-      ${ANSI.FgWhite}${description.replace(/\n/g, '\n      ')}${ANSI.Reset}
+      ${ANSI.Reset}${description.replace(/\n/g, '\n      ')}${ANSI.Reset}
 `)
 }
 
