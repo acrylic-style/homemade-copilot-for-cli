@@ -6,7 +6,7 @@ import { inspect } from 'util'
 import { spawn } from 'child_process'
 
 const systemMessage = `
-あなたはWindows、Linux、Mac OSのコマンドをよく知っている神です。ユーザーの要求を満たすコマンドを出力してください。ただし、関係ない要求は拒否してください。
+あなたは${process.platform}のコマンドをよく知っている神です。ユーザーの要求を満たすコマンドを出力してください。ただし、関係ない要求は拒否してください。
 また、返答は以下のテンプレートに沿ってください。
 
 **CMD**
@@ -19,6 +19,11 @@ const systemMessage = `
 `
 
 const input = process.argv.slice(2).join(' ')
+
+if (input.length === 0) {
+  console.error('引数に内容を入力してください')
+  process.exit(1)
+}
 
 const ANSI = {
 	Reset: "\x1b[0m",
