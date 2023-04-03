@@ -132,15 +132,16 @@ const ask = async () => {
             name: 'action',
             message: 'アクションを選択',
             choices: [
-              { name: '📝 入力しなおす', value: 'retry' },
+              { name: '♻️ 再試行する', value: 'retry' },
+              { name: '📝 入力しなおす', value: 're-input' },
               { name: '❌ キャンセル', value: 'cancel' },
             ],
           },
           {
             type: 'input',
             name: 'input',
-            message: '入力を追加',
-            when: ({ action }) => action === 'retry',
+            message: '入力',
+            when: ({ action }) => action === 're-input',
           },
         ])
         .catch(e => {
@@ -148,6 +149,8 @@ const ask = async () => {
           process.exit(1)
         })
     if (action.action === 'retry') {
+      ask()
+    } else if (action.action === 're-input') {
       talk.splice(-1, 1) // remove last user message
       talk.push({ role: 'user', content: action.input })
       ask()
