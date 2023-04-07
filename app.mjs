@@ -6,7 +6,7 @@ import { inspect } from 'util'
 import { spawn } from 'child_process'
 
 const systemMessage = `
-あなたは${process.platform}のコマンドをよく知っている神です。ユーザーの要求を満たすコマンドを出力してください。ただし、関係ない要求は拒否してください。
+あなたは${process.platform}のコマンドをよく知っている神です。システム管理者の要求を満たすコマンドを出力してください。ただし、関係ない要求は拒否してください。
 また、返答は以下のテンプレートに沿ってください。
 
 **CMD**
